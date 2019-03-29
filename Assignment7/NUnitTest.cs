@@ -48,28 +48,28 @@ namespace Assignment7
 
         }
 
-        //[Test]
-        //public void NegativeTest()
-        //{
-        //    if (true)
-        //        Assert.Fail("Failure");
-        //}
+        
+        [TestMethod]
+        public void EstimateAVGContractValue()
+        {
+            
+            businessLogic.EstimateOnContract(1); Console.Write("TESTING Average method\n");
+
+            Assert.AreEqual(1100, businessLogic.EstimateAVGContractValue(1));
+
+        }
 
 
+        [TestMethod]
+        public void CalculateNoOfOpenContracts()
+        {
 
-        //[Test, ExpectedException(typeof(NotSupportedException))]
-        //public void ExpectedExceptionTest()
-        //{
-        //    throw new NotSupportedException();
-        //}
+            businessLogic.CalculateNoOfOpenContracts(); Console.Write("TESTING Average method\n");
 
-        //[Test, Ignore]
-        //public void NotImplemtedException()
-        //{
-        //    throw new NotImplementedException();
-        //}
+            Assert.AreEqual(5, businessLogic.CalculateNoOfOpenContracts());
 
+        }
 
-
+        
     }
 }

@@ -28,8 +28,12 @@
 
 --4
 --d. Calculate the average contract value per client.
+--SELECT avg([Value]) as 'AVGContractValue' FROM contract
+
 --SELECT [Client_Id], avg([Value]) as 'AVGContractValue' FROM contract
 --group by [Client_Id]
+
+
 
 
 
