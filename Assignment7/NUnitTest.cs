@@ -3,29 +3,48 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NUnit.Framework;
+using Assert = NUnit.Framework.Assert;
 
 namespace Assignment7
 {
-    [TestFixture]
-    class NUnitTest
-    {
-        [Test]
-        public void PositiveTest()
+        [TestClass]
+        public class NUnitTest
         {
-            int x = 7;
-            int y = 10;
+        [TestMethod]
+        public void AverageTest()
+        {
+            BusinessLogic businessLogic = new BusinessLogic();
 
-            Assert.AreEqual(x, y);
+            businessLogic.Average(); Console.Write("TESTING Average method\n");
+
+            Assert.AreEqual(2, businessLogic.Average());
+
 
         }
 
-        [Test]
-        public void NegativeTest()
-        {
-            if (true)
-                Assert.Fail("Failure");
-        }
+        //[TestMethod]
+        //public void AvgContractLength()
+        //{
+        //    Contract contract = new Contract();
+
+        //    contract.AvgContractLength(); Console.Write("TESTING Average method\n");
+
+        //    Assert.AreEqual(9, contract.AvgContractLength());
+
+
+        //}
+
+
+        //[Test]
+        //public void NegativeTest()
+        //{
+        //    if (true)
+        //        Assert.Fail("Failure");
+        //}
+
 
 
         //[Test, ExpectedException(typeof(NotSupportedException))]

@@ -7,12 +7,8 @@ using System.Threading.Tasks;
 
 namespace Assignment7
 {
-    class Contract
+    class BusinessLogic
     {
-
-
-        BusinessLogic businessLogic = new BusinessLogic();
-
         //For reading Contract table
         public void ReadContract()
         {
@@ -50,17 +46,107 @@ namespace Assignment7
 
         //1
         //--Calculate the overall average number of contracts per client.
-        public void Average()
+        public int Average()
         {
-            Console.WriteLine("The overall average number of contracts per client is " + businessLogic.Average());
-            
+            string connectionString;    //Variable declaration
+            SqlConnection cnn;
+
+            connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\colum\Source\Repos\Assignment7\Assignment7\Db.mdf;Integrated Security=True"; //Set connection string
+            cnn = new SqlConnection(connectionString);  //Assign connection
+            cnn.Open(); //Open connection
+
+            //For reading
+            //Define variables
+            SqlCommand command;
+            SqlDataReader dataReader;
+            String sql, Output = "";
+
+
+            sql = "SELECT Count(ContractNo)/COUNT(distinct Client_Id) as 'AverageNoOfContractsPerCustomer'FROM contract";    //Define sql statement
+            command = new SqlCommand(sql, cnn); // The command statement
+            dataReader = command.ExecuteReader();   //Define the data reader
+
+            //while (dataReader.Read())
+            //{
+            //    Output = "AverageNoOfContractsPerCustomer " + Output + dataReader.GetValue(0) + "\n";
+
+            //}
+
+            //Console.WriteLine(Output);    //Display the output to the user
+
+            //while (dataReader.Read())
+            //{
+            //    O = dataReader.GetValue(0) + "\n";
+
+            //}
+
+            int x = 0;
+
+            while (dataReader.Read())
+            {
+                x = Convert.ToInt32(dataReader.GetValue(0));
+
+            }
+
+
+            dataReader.Close(); //Close all objects
+            command.Dispose();
+
+
+            return (x);
+
         }
 
         //--2
         //--b.Calculate the average contract duration.
-        public void AvgContractLength()
+        public int AvgContractLength()
         {
-            Console.WriteLine("The overall average number of contracts per client is " + businessLogic.Average());
+            string connectionString;    //Variable declaration
+            SqlConnection cnn;
+
+            connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\colum\Source\Repos\Assignment7\Assignment7\Db.mdf;Integrated Security=True"; //Set connection string
+            cnn = new SqlConnection(connectionString);  //Assign connection
+            cnn.Open(); //Open connection
+
+            //For reading
+            //Define variables
+            SqlCommand command;
+            SqlDataReader dataReader;
+            String sql, Output = "";
+            int x = 0;
+
+
+            sql = "SELECT sum(DATEDIFF(MONTH, StartDate, EndDate))/COUNT(distinct ContractNo) as 'AvgContractLength' FROM contract";    //Define sql statement
+            command = new SqlCommand(sql, cnn); // The command statement
+            dataReader = command.ExecuteReader();   //Define the data reader
+
+            //while (dataReader.Read())
+            //{
+            //    Output = "AverageContractDuration " + Output + dataReader.GetValue(0) + " months" + "\n";
+
+            //}
+
+            //Console.WriteLine(Output);    //Display the output to the user
+
+            //dataReader.Close(); //Close all objects
+            //command.Dispose();
+
+
+            
+            while (dataReader.Read())
+            {
+                x = Convert.ToInt32(dataReader.GetValue(0));
+
+            }
+
+
+            dataReader.Close(); //Close all objects
+            command.Dispose();
+
+
+            return (x);
+
+
 
         }
 
@@ -105,7 +191,7 @@ namespace Assignment7
 
         //        --4
         //--d.Calculate the average contract value per client.
-        public void EstimateAVGContractValue()  
+        public void EstimateAVGContractValue()
         {
 
             string connectionString;    //Variable declaration
@@ -181,9 +267,7 @@ namespace Assignment7
 
             dataReader.Close(); //Close all objects
             command.Dispose();
-
-
+            
         }
-
     }
 }

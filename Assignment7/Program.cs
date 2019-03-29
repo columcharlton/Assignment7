@@ -109,49 +109,5 @@ namespace Assignment7
 
         }
 
-        [TestFixture]
-        class NUnitTest
-        {
-            [Test]
-            public void PositiveTest()
-            {
-                int x = 7;
-                int y = 10;
-
-                Assert.AreEqual(x, y);
-
-            }
-
-            [Test]
-            public void NegativeTest()
-            {
-                if (true)
-                    Assert.Fail("Failure");
-            }
-        }
-
-            //    }
-            //    [TestFixture]
-            //    public
-            //        class calcTest
-            //    {
-            //        [Test]
-            //        public
-            //        void
-            //        Addi5onTests()
-            //        {
-            //            calculator
-            //            cal = new
-            //            calculator();
-            //            cal.Addi5on(5, 10); Console.Write("TESTING
-            //              5 + 10\n");
-            //              Assert.AreEqual(15, cal.output());
-            //            cal.Addi5on(-­‐5, 10); Console.Write("TESTING
-            //              -­‐5 + 10\n");
-            //              Assert.AreEqual(5, cal.output());
-            //        }
-            //    }//for
-            //    tesbixture
-            //}
         }
     }
