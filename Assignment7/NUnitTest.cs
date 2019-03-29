@@ -18,8 +18,9 @@ namespace Assignment7
         [TestMethod]
         public void AverageTest()
         {
-            
-            businessLogic.Average(); Console.Write("TESTING Average method\n");
+
+            //Unit test for AverageTest method expected answer = 2
+
 
             Assert.AreEqual(2, businessLogic.Average());
 
@@ -29,8 +30,7 @@ namespace Assignment7
         [TestMethod]
         public void AvgContractLength()
         {
-            
-            businessLogic.AvgContractLength(); Console.Write("TESTING Average method\n");
+            //Unit test for AvgContractLength method expected answer = 9
 
             Assert.AreEqual(9, businessLogic.AvgContractLength());
 
@@ -41,8 +41,8 @@ namespace Assignment7
         [TestMethod]
         public void EstimateOnContract()
         {
-
-            businessLogic.EstimateOnContract(1); Console.Write("TESTING Average method\n");
+            //Unit test for EstimateOnContract method expected answer = 1
+            //for for ContractNo =1
 
             Assert.AreEqual(1, businessLogic.EstimateOnContract(1));
 
@@ -52,8 +52,9 @@ namespace Assignment7
         [TestMethod]
         public void EstimateAVGContractValue()
         {
-            
-            businessLogic.EstimateOnContract(1); Console.Write("TESTING Average method\n");
+
+            //Unit test for EstimateAVGContractValue method expected answer = 1100
+            //for Clintid =1
 
             Assert.AreEqual(1100, businessLogic.EstimateAVGContractValue(1));
 
@@ -64,8 +65,7 @@ namespace Assignment7
         public void CalculateNoOfOpenContracts()
         {
 
-            businessLogic.CalculateNoOfOpenContracts(); Console.Write("TESTING Average method\n");
-
+            
             Assert.AreEqual(5, businessLogic.CalculateNoOfOpenContracts());
 
         }

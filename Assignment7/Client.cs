@@ -21,6 +21,8 @@ namespace Assignment7
             cnn.Open(); //Open connection
             Console.WriteLine("Connection Open  !");
 
+            cnn.Close(); //Disconnect
+
 
         }
 
@@ -57,6 +59,8 @@ namespace Assignment7
 
             dataReader.Close(); //Close all objects
             command.Dispose();
+            cnn.Close();    //Disconnect
+
         }
 
 
@@ -88,6 +92,7 @@ namespace Assignment7
 
             //Close all objects
             command.Dispose();
+            cnn.Close();        //Disconnect
 
         }
         //For Updating
@@ -120,6 +125,7 @@ namespace Assignment7
 
             //Close all objects
             command.Dispose();
+            cnn.Close();        //Disconnect
 
         }
 
@@ -154,6 +160,7 @@ namespace Assignment7
 
             //Close all objects
             command.Dispose();
+            cnn.Close();        //Disconnect
 
         }
 
@@ -165,7 +172,7 @@ namespace Assignment7
             connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\colum\Source\Repos\Assignment7\Assignment7\Db.mdf;Integrated Security=True"; //Set connection string
             cnn = new SqlConnection(connectionString);  //Assign connection
 
-            cnn.Close();
+            cnn.Close();       //Disconnect
             Console.WriteLine("Connection Closed  !");
 
         }

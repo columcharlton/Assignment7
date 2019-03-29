@@ -10,7 +10,7 @@ namespace Assignment7
     class BusinessLogic
     {
         //For reading Contract table
-        public void ReadContract()
+        public string ReadContract()
         {
             string connectionString;    //Variable declaration
             SqlConnection cnn;
@@ -29,18 +29,19 @@ namespace Assignment7
             command = new SqlCommand(sql, cnn); // The command statement
             dataReader = command.ExecuteReader();   //Define the data reader
 
-            Console.WriteLine("ContractNo, Value, Client_Id, StartDate, EndDate");    //Display the output to the user
-
+            
             while (dataReader.Read())
             {
                 Output = Output + dataReader.GetValue(0) + " - " + dataReader.GetValue(1) + " - " + dataReader.GetValue(2) + " - " + dataReader.GetValue(3) + " - " + dataReader.GetValue(4) + "\n";
 
             }
 
-            Console.WriteLine(Output);    //Display the output to the user
-
+            
             dataReader.Close(); //Close all objects
             command.Dispose();
+            cnn.Close();        //Disconnect
+
+            return (Output);
 
         }
 
@@ -48,6 +49,7 @@ namespace Assignment7
         //--Calculate the overall average number of contracts per client.
         public int Average()
         {
+            int Output = 0;
             string connectionString;    //Variable declaration
             SqlConnection cnn;
 
@@ -59,32 +61,18 @@ namespace Assignment7
             //Define variables
             SqlCommand command;
             SqlDataReader dataReader;
-            String sql, Output = "";
+            String sql;
 
 
             sql = "SELECT Count(ContractNo)/COUNT(distinct Client_Id) as 'AverageNoOfContractsPerCustomer'FROM contract";    //Define sql statement
             command = new SqlCommand(sql, cnn); // The command statement
             dataReader = command.ExecuteReader();   //Define the data reader
 
-            //while (dataReader.Read())
-            //{
-            //    Output = "AverageNoOfContractsPerCustomer " + Output + dataReader.GetValue(0) + "\n";
-
-            //}
-
-            //Console.WriteLine(Output);    //Display the output to the user
-
-            //while (dataReader.Read())
-            //{
-            //    O = dataReader.GetValue(0) + "\n";
-
-            //}
-
-            int x = 0;
-
+            
+            
             while (dataReader.Read())
             {
-                x = Convert.ToInt32(dataReader.GetValue(0));
+                Output = Convert.ToInt32(dataReader.GetValue(0));
 
             }
 
@@ -93,7 +81,7 @@ namespace Assignment7
             command.Dispose();
             cnn.Close();
 
-            return (x);
+            return (Output);
 
         }
 
@@ -101,6 +89,7 @@ namespace Assignment7
         //--b.Calculate the average contract duration.
         public int AvgContractLength()
         {
+            int Output = 0;
             string connectionString;    //Variable declaration
             SqlConnection cnn;
 
@@ -112,30 +101,20 @@ namespace Assignment7
             //Define variables
             SqlCommand command;
             SqlDataReader dataReader;
-            String sql, Output = "";
-            int x = 0;
+            String sql;
+            
 
 
             sql = "SELECT sum(DATEDIFF(MONTH, StartDate, EndDate))/COUNT(distinct ContractNo) as 'AvgContractLength' FROM contract";    //Define sql statement
             command = new SqlCommand(sql, cnn); // The command statement
             dataReader = command.ExecuteReader();   //Define the data reader
 
-            //while (dataReader.Read())
-            //{
-            //    Output = "AverageContractDuration " + Output + dataReader.GetValue(0) + " months" + "\n";
-
-            //}
-
-            //Console.WriteLine(Output);    //Display the output to the user
-
-            //dataReader.Close(); //Close all objects
-            //command.Dispose();
-
+           
 
             
             while (dataReader.Read())
             {
-                x = Convert.ToInt32(dataReader.GetValue(0));
+                Output = Convert.ToInt32(dataReader.GetValue(0)); //Casting answer
 
             }
             
@@ -144,7 +123,7 @@ namespace Assignment7
             cnn.Close();
 
 
-            return (x);
+            return (Output);
             
         }
 
@@ -155,7 +134,7 @@ namespace Assignment7
         public int EstimateOnContract(int ContractNo)
         {
             int contractNo = ContractNo;
-            int x = 0; 
+            int Output = 0;
             string connectionString;    //Variable declaration
             SqlConnection cnn;
 
@@ -167,7 +146,7 @@ namespace Assignment7
             //Define variables
             SqlCommand command;
             SqlDataReader dataReader;
-            String sql, Output = "";
+            String sql;
 
             sql = "SELECT[ContractNo], DATEDIFF(MONTH, StartDate, EndDate) as 'ContractLength' FROM contract where ContractNo =" + ContractNo + ";";    //Define sql statement
             command = new SqlCommand(sql, cnn); // The command statement
@@ -176,7 +155,7 @@ namespace Assignment7
 
             while (dataReader.Read())
             {
-                x = Convert.ToInt32(dataReader.GetValue(0));
+                Output = Convert.ToInt32(dataReader.GetValue(0));
 
             }
 
@@ -185,7 +164,7 @@ namespace Assignment7
             cnn.Close();
 
 
-            return (x);
+            return (Output);
             
         }
 
@@ -195,7 +174,7 @@ namespace Assignment7
         public int EstimateAVGContractValue(int ClientId)
         {
             int clientId = ClientId;
-            int x = 0;
+            int Output = 0;
             string connectionString;    //Variable declaration
             SqlConnection cnn;
 
@@ -207,7 +186,7 @@ namespace Assignment7
             //Define variables
             SqlCommand command;
             SqlDataReader dataReader;
-            String sql, Output = "";
+            String sql;
 
             sql = "SELECT avg([Value]) as 'AVGContractValue' FROM contract where [Client_Id] = " + clientId + ";";    //Define sql statement
             command = new SqlCommand(sql, cnn); // The command statement
@@ -216,7 +195,7 @@ namespace Assignment7
             
             while (dataReader.Read())
             {
-                x = Convert.ToInt32(dataReader.GetValue(0));
+                Output = Convert.ToInt32(dataReader.GetValue(0));
 
             }
 
@@ -225,7 +204,7 @@ namespace Assignment7
             cnn.Close();
 
 
-            return (x);
+            return (Output);
             
         }
         //     --5
@@ -233,7 +212,7 @@ namespace Assignment7
         public int CalculateNoOfOpenContracts()
         {
 
-            int x = 0;
+            int Output = 0;
             string connectionString;    //Variable declaration
             SqlConnection cnn;
 
@@ -246,7 +225,7 @@ namespace Assignment7
 
             SqlCommand command;
             SqlDataReader dataReader;
-            String sql, Output = "";
+            String sql;
 
             sql = "Select Count([ContractNo]) as ContractsStillOpen from [contract] where convert(date, GETDATE()) < [EndDate]";    //Define sql statement
             command = new SqlCommand(sql, cnn); // The command statement
@@ -255,7 +234,7 @@ namespace Assignment7
 
             while (dataReader.Read())
             {
-                x = Convert.ToInt32(dataReader.GetValue(0));
+                Output = Convert.ToInt32(dataReader.GetValue(0));
 
             }
 
@@ -264,7 +243,7 @@ namespace Assignment7
             cnn.Close();
 
 
-            return (x);
+            return (Output);
 
 
         }

@@ -36,27 +36,22 @@ namespace Assignment7
                     {
                         case 1:
                             client.Connect();
-                            client.Disconnect();
                             break;
                         case 2:
                             client.ReadClients();
                             contract.ReadContract();
-                            client.Disconnect();
                             break;
                         case 3:
                             client.Insert();
                             client.ReadClients();
-                            client.Disconnect();
                             break;
                         case 4:
                             client.Update();
                             client.ReadClients();
-                            client.Disconnect();
                             break;
                         case 5:
                             client.Delete();
                             client.ReadClients();
-                            client.Disconnect();
                             break;
                         case 6:
                             client.Disconnect();
@@ -68,7 +63,7 @@ namespace Assignment7
                 case 2:
                     //Console.WriteLine("Would you like to connect:1 , read:2 , insert:3 , update:4 delete:5 or disconnect:5 ? ");
                     Console.WriteLine("Would you like to \n 1:View table data \n 2:See Average Contract duration \n 3:See Avg Contract Length \n " +
-                        "4:Estimate time remaining on Contract \n 5:Estimate AVG Contract Value \n 6:Calculate No Of Open Contracts  ? ");
+                        "4:Estimate time remaining on Contract \n 5:Estimate AVG Contract Value \n 6:Calculate No Of Open Contracts  ");
 
                     int choice2 = Convert.ToInt32(Console.ReadLine());
 
@@ -97,12 +92,8 @@ namespace Assignment7
 
                     }
                     break;
-
-                default:
-                    Console.WriteLine("Default case");
-                    break;
-            }
-            Console.ReadLine();
+                }
+                    Console.ReadLine();
 
         }
 
