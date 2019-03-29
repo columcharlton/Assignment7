@@ -28,7 +28,7 @@ namespace Assignment7
             switch (caseSwitch1)
             {
                 case 1:
-                    Console.WriteLine("Would you like to connect:1 , read:2 , insert:3 , update:4 delete:5 or disconnect:5 ? ");
+                    Console.WriteLine("Would you like to 1:connect , 2:read , 3:insert , 4:update 5:delete or 5:disconnect ? ");
                     int choice = Convert.ToInt32(Console.ReadLine());
 
                     //int choice = 1;
@@ -67,8 +67,8 @@ namespace Assignment7
                     break;
                 case 2:
                     //Console.WriteLine("Would you like to connect:1 , read:2 , insert:3 , update:4 delete:5 or disconnect:5 ? ");
-                    Console.WriteLine("Would you like to \n connect:1 \n View table data:2 \n See Average Contract duration:3 \n See Avg Contract Length:4 \n " +
-                        "Estimate time remaining on Contract:5 \n Estimate AVG Contract Value:6 \n Calculate No Of Open Contracts:7  ? ");
+                    Console.WriteLine("Would you like to \n 1:View table data \n 2:See Average Contract duration \n 3:See Avg Contract Length \n " +
+                        "4:Estimate time remaining on Contract \n 5:Estimate AVG Contract Value \n 6:Calculate No Of Open Contracts  ? ");
 
                     int choice2 = Convert.ToInt32(Console.ReadLine());
 
@@ -76,24 +76,21 @@ namespace Assignment7
                     switch (choice2)
                     {
                         case 1:
-                            client.Connect();
-                            break;
-                        case 2:
                             contract.ReadContract();
                             break;
-                        case 3:
+                        case 2:
                             contract.Average();
                             break;
-                        case 4:
+                        case 3:
                             contract.AvgContractLength();
                             break;
-                        case 5:
-                            contract.EstimateOnContract(1);
+                        case 4:
+                            contract.EstimateOnContract();
                             break;
-                        case 6:
+                        case 5:
                             contract.EstimateAVGContractValue();
                             break;
-                        case 7:
+                        case 6:
                             contract.CalculateNoOfOpenContracts();
                             break;
 

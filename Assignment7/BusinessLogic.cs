@@ -91,7 +91,7 @@ namespace Assignment7
 
             dataReader.Close(); //Close all objects
             command.Dispose();
-
+            cnn.Close();
 
             return (x);
 
@@ -138,26 +138,24 @@ namespace Assignment7
                 x = Convert.ToInt32(dataReader.GetValue(0));
 
             }
-
-
+            
             dataReader.Close(); //Close all objects
             command.Dispose();
+            cnn.Close();
 
 
             return (x);
-
-
-
+            
         }
 
 
 
         //--3
         //--c.Estimate the time remaining on a specific contract.
-        public void EstimateOnContract(int ContractNo)
+        public int EstimateOnContract(int ContractNo)
         {
             int a = ContractNo;
-
+            int x = 0; 
             string connectionString;    //Variable declaration
             SqlConnection cnn;
 
@@ -175,17 +173,20 @@ namespace Assignment7
             command = new SqlCommand(sql, cnn); // The command statement
             dataReader = command.ExecuteReader();   //Define the data reader
 
+
             while (dataReader.Read())
             {
-                Output = "AverageContractDurationForSpecificContract is " + Output + dataReader.GetValue(0) + " months" + "\n";
+                x = Convert.ToInt32(dataReader.GetValue(0));
 
             }
 
-            Console.WriteLine(Output);    //Display the output to the user
-
             dataReader.Close(); //Close all objects
             command.Dispose();
+            cnn.Close();
 
+
+            return (x);
+            
         }
 
 

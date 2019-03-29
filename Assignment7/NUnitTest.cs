@@ -12,12 +12,13 @@ namespace Assignment7
 {
         [TestClass]
         public class NUnitTest
-        {
+{
+        BusinessLogic businessLogic = new BusinessLogic();
+
         [TestMethod]
         public void AverageTest()
         {
-            BusinessLogic businessLogic = new BusinessLogic();
-
+            
             businessLogic.Average(); Console.Write("TESTING Average method\n");
 
             Assert.AreEqual(2, businessLogic.Average());
@@ -25,18 +26,27 @@ namespace Assignment7
 
         }
 
-        //[TestMethod]
-        //public void AvgContractLength()
-        //{
-        //    Contract contract = new Contract();
+        [TestMethod]
+        public void AvgContractLength()
+        {
+            
+            businessLogic.AvgContractLength(); Console.Write("TESTING Average method\n");
 
-        //    contract.AvgContractLength(); Console.Write("TESTING Average method\n");
+            Assert.AreEqual(9, businessLogic.AvgContractLength());
 
-        //    Assert.AreEqual(9, contract.AvgContractLength());
+        }
 
 
-        //}
 
+        [TestMethod]
+        public void EstimateOnContract()
+        {
+
+            businessLogic.EstimateOnContract(1); Console.Write("TESTING Average method\n");
+
+            Assert.AreEqual(1, businessLogic.EstimateOnContract(1));
+
+        }
 
         //[Test]
         //public void NegativeTest()

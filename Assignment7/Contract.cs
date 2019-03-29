@@ -60,7 +60,7 @@ namespace Assignment7
         //--b.Calculate the average contract duration.
         public void AvgContractLength()
         {
-            Console.WriteLine("The overall average number of contracts per client is " + businessLogic.Average());
+            Console.WriteLine("The average contract duration. " + businessLogic.AvgContractLength());
 
         }
 
@@ -68,37 +68,10 @@ namespace Assignment7
 
         //--3
         //--c.Estimate the time remaining on a specific contract.
-        public void EstimateOnContract(int ContractNo)
+        public void EstimateOnContract()
         {
-            int a = ContractNo;
 
-            string connectionString;    //Variable declaration
-            SqlConnection cnn;
-
-            connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\colum\Source\Repos\Assignment7\Assignment7\Db.mdf;Integrated Security=True"; //Set connection string
-            cnn = new SqlConnection(connectionString);  //Assign connection
-            cnn.Open(); //Open connection
-
-            //For reading
-            //Define variables
-            SqlCommand command;
-            SqlDataReader dataReader;
-            String sql, Output = "";
-
-            sql = "SELECT[ContractNo], DATEDIFF(MONTH, StartDate, EndDate) as 'ContractLength' FROM contract where ContractNo =" + a + ";";    //Define sql statement
-            command = new SqlCommand(sql, cnn); // The command statement
-            dataReader = command.ExecuteReader();   //Define the data reader
-
-            while (dataReader.Read())
-            {
-                Output = "AverageContractDurationForSpecificContract is " + Output + dataReader.GetValue(0) + " months" + "\n";
-
-            }
-
-            Console.WriteLine(Output);    //Display the output to the user
-
-            dataReader.Close(); //Close all objects
-            command.Dispose();
+            Console.WriteLine("The average contract duration. " + businessLogic.EstimateOnContract(1));
 
         }
 
