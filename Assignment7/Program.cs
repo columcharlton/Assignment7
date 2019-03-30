@@ -39,7 +39,6 @@ namespace Assignment7
                             break;
                         case 2:
                             client.ReadClients();
-                            contract.ReadContract();
                             break;
                         case 3:
                             client.Insert();

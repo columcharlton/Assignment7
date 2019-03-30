@@ -44,7 +44,7 @@ namespace Assignment7
         public void EstimateOnContract()
         {
 
-            Console.WriteLine("The average contract duration for that client " + businessLogic.EstimateOnContract(1));
+            Console.WriteLine("The time remaining on that specific contract is " + businessLogic.EstimateOnContract(1) + " Month");
 
         }
 

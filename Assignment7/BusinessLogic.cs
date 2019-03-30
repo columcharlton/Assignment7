@@ -103,15 +103,11 @@ namespace Assignment7
             SqlDataReader dataReader;
             String sql;
             
-
-
             sql = "SELECT sum(DATEDIFF(MONTH, StartDate, EndDate))/COUNT(distinct ContractNo) as 'AvgContractLength' FROM contract";    //Define sql statement
             command = new SqlCommand(sql, cnn); // The command statement
             dataReader = command.ExecuteReader();   //Define the data reader
 
            
-
-            
             while (dataReader.Read())
             {
                 Output = Convert.ToInt32(dataReader.GetValue(0)); //Casting answer
@@ -152,7 +148,6 @@ namespace Assignment7
             command = new SqlCommand(sql, cnn); // The command statement
             dataReader = command.ExecuteReader();   //Define the data reader
 
-
             while (dataReader.Read())
             {
                 Output = Convert.ToInt32(dataReader.GetValue(0));
@@ -163,9 +158,7 @@ namespace Assignment7
             command.Dispose();
             cnn.Close();
 
-
             return (Output);
-            
         }
 
 
@@ -202,8 +195,6 @@ namespace Assignment7
             dataReader.Close(); //Close all objects
             command.Dispose();
             cnn.Close();
-
-
             return (Output);
             
         }
@@ -230,8 +221,7 @@ namespace Assignment7
             sql = "Select Count([ContractNo]) as ContractsStillOpen from [contract] where convert(date, GETDATE()) < [EndDate]";    //Define sql statement
             command = new SqlCommand(sql, cnn); // The command statement
             dataReader = command.ExecuteReader();   //Define the data reader
-
-
+            
             while (dataReader.Read())
             {
                 Output = Convert.ToInt32(dataReader.GetValue(0));
@@ -241,8 +231,7 @@ namespace Assignment7
             dataReader.Close(); //Close all objects
             command.Dispose();
             cnn.Close();
-
-
+            
             return (Output);
 
 
